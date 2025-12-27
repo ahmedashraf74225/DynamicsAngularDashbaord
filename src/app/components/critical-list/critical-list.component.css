@@ -1,0 +1,45 @@
+/* Container must handle the fixed height and enable scrolling */
+.table-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  overflow: auto; /* Required for sticky functionality */
+}
+
+/* Material Table Specific Styling */
+table {
+  width: 100%;
+  table-layout: fixed; 
+}
+
+/* FIXED: Sticky header logic and background */
+th.mat-header-cell {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Stays above row data */
+  background: white; /* Prevents rows from being visible behind labels */
+  white-space: nowrap; 
+  padding: 12px 8px;
+  font-weight: bold;
+  color: #605e5c;
+  border-bottom: 2px solid #edebe9;
+}
+
+td.mat-cell {
+  padding: 12px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid #f3f2f1;
+}
+
+/* Highlight Case Numbers */
+.bold { font-weight: 600; color: #323130; }
+
+/* Set explicit column widths to prevent shifting */
+.mat-column-caseNumber { width: 15%; }
+.mat-column-queueName { width: 20%; }
+.mat-column-enteredAt { width: 22%; } /* Adjusted slightly for space */
+.mat-column-exitedAt { width: 22%; }  /* Adjusted slightly for space */
+.mat-column-owner { 
+  width: 21%; /* Increased to prevent "Last Name" wrap overlap */
+}

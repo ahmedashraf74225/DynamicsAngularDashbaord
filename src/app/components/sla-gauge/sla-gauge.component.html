@@ -1,0 +1,12 @@
+<div class="gauge-card">
+  <div class="gauge-content">
+    <div class="gauge-number">{{ percent }}%</div>
+    
+    <div class="bar-container-large">
+      <div class="bar-fill-large" 
+           [style.width.%]="percent" 
+           [style.background-color]="percent >= 80 ? '#6bb68c' : (percent >= 50 ? '#f1d37e' : '#d32f2f')">
+      </div>
+    </div>
+  </div>
+</div>

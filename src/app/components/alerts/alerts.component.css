@@ -1,0 +1,23 @@
+.alerts-card {
+  background: white;
+  padding: 20px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  height: 100%;
+}
+
+.alert-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.alert-icon { margin-right: 10px; }
+
+/* Alert Types */
+.warning { background: #fff4ce; color: #323130; border-left: 4px solid #ffb900; }
+.danger { background: #fde7e9; color: #323130; border-left: 4px solid #d13438; }
+.no-alerts { color: #605e5c; font-style: italic; }

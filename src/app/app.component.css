@@ -1,0 +1,120 @@
+.dashboard-wrapper {
+  padding: 24px;
+  background-color: #f3f2f1;
+  min-height: 100vh;
+}
+
+.kpi-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px; /* Added 35px space below KPI cards */
+  width: 100%;
+}
+
+.kpi-row app-kpi-card {
+  flex: 1 1 0px; /* Forces all cards to grow equally from a 0 base */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 20px;
+  margin-bottom: 35px; /* Added 35px space below tables */
+}
+
+/* Ensure the bottom row also follows the grid split */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 20px;
+}
+
+.table-section, .sidebar-section, .alerts-section, .gauge-section {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #edebe9;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* MUST be hidden to keep section-header fixed at the top */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Internal scroll for components */
+/* This allows the sticky header inside the tables to work correctly */
+app-queue-table, app-critical-list, app-alerts {
+  flex-grow: 1;
+  height: 0; /* Important for flex-grow to handle overflow correctly in some browsers */
+  overflow: hidden; /* The internal .table-container will handle the actual scroll */
+}
+
+
+
+.dashboard-wrapper { padding: 24px; background-color: #f3f2f1; }
+
+.kpi-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+  width: 100%; /* Requested space */
+}
+
+.kpi-row app-kpi-card {
+  flex: 1; /* Simple and effective for equal-width cards */
+  min-width: 0; /* Prevents cards from pushing past the wrapper if screen is narrow */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 20px;
+  margin-bottom: 35px; /* Requested space */
+}
+
+.table-section, .sidebar-section {
+  background: white;
+  height: 400px; /* Locked height */
+  display: flex;
+  flex-direction: column;
+}
+
+.table-section, .sidebar-section, .alerts-section, .gauge-section {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #edebe9;
+  height: 400px; 
+  /* CHANGE: Change 'hidden' to 'visible' if the dropdown is still being cut off */
+  overflow: visible; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the table component itself handles the internal scroll */
+app-queue-table, app-critical-list, app-alerts {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* Center and style the section labels */
+.section-header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #323130; /* Power Platform Neutral Primary color */
+  padding: 15px 0;
+  margin: 0;
+  border-bottom: 1px solid #edebe9;
+  background-color: #faf9f8;
+  width: 100%;
+}
+
+/* Ensure the containers don't have conflicting padding */
+.table-section, .sidebar-section, .alerts-section, .gauge-section {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #edebe9;
+  height: 400px;
+  overflow: hidden; /* Keep the header fixed at the top */
+  display: flex;
+  flex-direction: column;
+}

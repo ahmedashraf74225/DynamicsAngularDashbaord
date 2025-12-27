@@ -1,0 +1,27 @@
+.gauge-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.gauge-number {
+  font-size: 56px; /* Large focus on the number */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.bar-container-large {
+  width: 100%;
+  max-width: 300px;
+  background: #f3f2f1;
+  height: 20px; /* Thicker bar for the main section */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill-large {
+  height: 100%;
+  transition: width 0.8s ease-in-out;
+}

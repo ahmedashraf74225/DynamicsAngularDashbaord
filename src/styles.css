@@ -1,0 +1,15 @@
+/* This imports the core styles for overlays, positioning, and colors */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Ensure the overlay container is relative to the dashboard */
+.cdk-overlay-container {
+  z-index: 9999 !important;
+  position: fixed;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Let the dashboard wrapper handle internal scrolling */
+}
