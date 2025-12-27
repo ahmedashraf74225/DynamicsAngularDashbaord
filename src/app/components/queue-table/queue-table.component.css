@@ -5,6 +5,7 @@
   flex-direction: column;
   background: white;
   overflow: auto; /* Required for sticky headers to work */
+  position: relative; /* ADDED: Creates positioning context */
 }
 
 /* Material Table Layout */
@@ -17,14 +18,26 @@ table {
 th.mat-header-cell {
   position: sticky; /* Keeps the header fixed at the top */
   top: 0;
-  z-index: 100; /* Stays above the scrolling rows */
-  background: white; /* Prevents data from appearing behind text */
+  z-index: 1000; /* CHANGED: Increased from 100 to ensure it stays on top */
+  background: #faf9f8; /* CHANGED: Match the section header background */
   font-weight: bold;
   color: #605e5c;
   white-space: nowrap; 
   padding: 12px 8px;
   border-bottom: 2px solid #edebe9;
   font-size: 13px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* ADDED: Shadow to separate from content */
+}
+
+/* ADDED: Prevent background transparency issues */
+th.mat-header-cell::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #edebe9;
 }
 
 /* Cell Styling */
@@ -33,9 +46,10 @@ td.mat-cell {
   font-size: 13px;
   border-bottom: 1px solid #f3f2f1;
   color: #323130;
+  background: white; /* ADDED: Ensure cells have solid background */
 }
 
-/* Progress Bar and Column Widths (Remain the same) */
+/* Progress Bar and Column Widths */
 .bar-container {
   background: #f3f2f1;
   height: 10px;
@@ -60,10 +74,21 @@ td.mat-cell {
   min-width: 35px;
 }
 
-.bold { font-weight: 600; }
+.bold { 
+  font-weight: 600; 
+}
 
 .mat-column-name { width: 28%; }
 .mat-column-open { width: 10%; }
 .mat-column-avgCaseAge { width: 18%; }
 .mat-column-oldestCaseAge { width: 18%; }
 .mat-column-compliance { width: 26%; }
+
+/* ADDED: Ensure table rows have solid background */
+tr.mat-row {
+  background: white;
+}
+
+tr.mat-row:hover {
+  background: #f3f2f1;
+}

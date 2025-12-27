@@ -5,6 +5,7 @@
   flex-direction: column;
   background: white;
   overflow: auto; /* Required for sticky functionality */
+  position: relative; /* ADDED: Creates positioning context */
 }
 
 /* Material Table Specific Styling */
@@ -15,31 +16,54 @@ table {
 
 /* FIXED: Sticky header logic and background */
 th.mat-header-cell {
-  position: sticky;
+  position: sticky; /* Keeps the header fixed at the top */
   top: 0;
-  z-index: 100; /* Stays above row data */
-  background: white; /* Prevents rows from being visible behind labels */
+  z-index: 1000; /* CHANGED: Increased from 100 to ensure it stays on top */
+  background: #faf9f8; /* CHANGED: Match the section header background */
   white-space: nowrap; 
   padding: 12px 8px;
   font-weight: bold;
   color: #605e5c;
   border-bottom: 2px solid #edebe9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* ADDED: Shadow to separate from content */
+}
+
+/* ADDED: Prevent background transparency issues */
+th.mat-header-cell::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #edebe9;
 }
 
 td.mat-cell {
   padding: 12px 8px;
   font-size: 13px;
   border-bottom: 1px solid #f3f2f1;
+  background: white; /* ADDED: Ensure cells have solid background */
 }
 
 /* Highlight Case Numbers */
-.bold { font-weight: 600; color: #323130; }
+.bold { 
+  font-weight: 600; 
+  color: #323130; 
+}
 
 /* Set explicit column widths to prevent shifting */
 .mat-column-caseNumber { width: 15%; }
 .mat-column-queueName { width: 20%; }
-.mat-column-enteredAt { width: 22%; } /* Adjusted slightly for space */
-.mat-column-exitedAt { width: 22%; }  /* Adjusted slightly for space */
-.mat-column-owner { 
-  width: 21%; /* Increased to prevent "Last Name" wrap overlap */
+.mat-column-enteredAt { width: 22%; }
+.mat-column-exitedAt { width: 22%; }
+.mat-column-owner { width: 21%; }
+
+/* ADDED: Ensure table rows have solid background */
+tr.mat-row {
+  background: white;
 }
+
+tr.mat-row:hover {
+  background: #f3f2f1;
+} 
