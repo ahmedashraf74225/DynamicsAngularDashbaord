@@ -101,7 +101,7 @@ export class DynamicsService {
       avgCaseAge: q.agesInDays.length > 0 ? 
         (q.agesInDays.reduce((a: any, b: any) => a + b, 0) / q.agesInDays.length).toFixed(1) + ' days' : '0.0 days',
       oldestCaseAge: q.agesInDays.length > 0 ? 
-        Math.max(...q.agesInDays).toFixed(1) + ' days' : '0.0 days',
+        Math.max(...q.agesInDays).toFixed(2) + ' days' : '0.0 days',
       compliance: q.slaRelevantTotal > 0 ? Math.round((q.withinSLA / q.slaRelevantTotal) * 100) : 0
     };
   });

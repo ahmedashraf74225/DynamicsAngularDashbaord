@@ -1,32 +1,58 @@
 <div class="dashboard-wrapper">
-  <div class="kpi-row">
-    <app-kpi-card label="Total Open Cases" [value]="kpis.total"></app-kpi-card>
-    <app-kpi-card label="Within SLA" [value]="kpis.within" color="#2e7d32"></app-kpi-card>
-    <app-kpi-card label="At Risk" [value]="kpis.atRisk" color="#ed6c02"></app-kpi-card>
-    <app-kpi-card label="Breached SLA" [value]="kpis.breached" color="#d32f2f"></app-kpi-card>
+  <!-- NEW: Header with Refresh Button -->
+  <div class="dashboard-header">
+    <div class="header-actions">
+      <button class="refresh-btn" (click)="refreshData()" [disabled]="isLoading">
+        <span class="refresh-icon" [class.spinning]="isLoading">⟳</span>
+        Refresh
+      </button>
+    </div>
   </div>
 
-  <main class="grid-container">
-    <section class="table-section">
-      <h3 class="section-header">Queue-level Monitoring</h3>
-      <app-queue-table [data]="dashboardData"></app-queue-table>
-    </section>
+  <!-- NEW: Loading Overlay -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading dashboard data...</p>
+  </div>
 
-    <section class="sidebar-section">
-      <h3 class="section-header">Critical Cases Monitoring</h3>
-      <app-critical-list [cases]="criticalCases"></app-critical-list>
-    </section>
-  </main>
+  <!-- NEW: Error Banner -->
+  <div class="error-banner" *ngIf="hasError && !isLoading">
+    <span class="error-icon">⚠️</span>
+    <span class="error-text">{{ errorMessage }}</span>
+    <button class="retry-btn" (click)="refreshData()">Retry</button>
+  </div>
 
-  <div class="bottom-row">
-    <section class="alerts-section">
-      <h3 class="section-header">Alerts</h3>
-      <app-alerts [alerts]="alertData"></app-alerts>
-    </section>
-    
-    <section class="gauge-section">
-      <h3 class="section-header">Overall SLA Compliance</h3>
-      <app-sla-gauge [percent]="overallCompliance"></app-sla-gauge>
-    </section>
+  <!-- Dashboard Content -->
+  <div class="dashboard-content" [class.loading]="isLoading">
+    <div class="kpi-row">
+      <app-kpi-card label="Total Open Cases" [value]="kpis.total"></app-kpi-card>
+      <app-kpi-card label="Within SLA" [value]="kpis.within" color="#2e7d32"></app-kpi-card>
+      <app-kpi-card label="At Risk" [value]="kpis.atRisk" color="#ed6c02"></app-kpi-card>
+      <app-kpi-card label="Breached SLA" [value]="kpis.breached" color="#d32f2f"></app-kpi-card>
+    </div>
+
+    <main class="grid-container">
+      <section class="table-section">
+        <h3 class="section-header">Queue-level Monitoring</h3>
+        <app-queue-table [data]="dashboardData"></app-queue-table>
+      </section>
+
+      <section class="sidebar-section">
+        <h3 class="section-header">Critical Cases Monitoring</h3>
+        <app-critical-list [cases]="criticalCases"></app-critical-list>
+      </section>
+    </main>
+
+    <div class="bottom-row">
+      <section class="alerts-section">
+        <h3 class="section-header">Alerts</h3>
+        <app-alerts [alerts]="alertData"></app-alerts>
+      </section>
+      
+      <section class="gauge-section">
+        <h3 class="section-header">Overall SLA Compliance</h3>
+        <app-sla-gauge [percent]="overallCompliance"></app-sla-gauge>
+      </section>
+    </div>
   </div>
 </div>
