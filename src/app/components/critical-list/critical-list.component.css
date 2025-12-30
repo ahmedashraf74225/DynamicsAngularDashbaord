@@ -1,34 +1,30 @@
-/* Container must handle the fixed height and enable scrolling */
 .table-container {
   height: 100%;
   display: flex;
   flex-direction: column;
   background: white;
-  overflow: auto; /* Required for sticky functionality */
-  position: relative; /* ADDED: Creates positioning context */
+  overflow: auto;
+  position: relative;
 }
 
-/* Material Table Specific Styling */
 table {
   width: 100%;
   table-layout: fixed; 
 }
 
-/* FIXED: Sticky header logic and background */
 th.mat-header-cell {
-  position: sticky; /* Keeps the header fixed at the top */
+  position: sticky;
   top: 0;
-  z-index: 1000; /* CHANGED: Increased from 100 to ensure it stays on top */
-  background: #faf9f8; /* CHANGED: Match the section header background */
+  z-index: 1000;
+  background: #faf9f8;
   white-space: nowrap; 
   padding: 12px 8px;
-  font-weight: bold;
+  font-weight: 700;
   color: #605e5c;
   border-bottom: 2px solid #edebe9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* ADDED: Shadow to separate from content */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
-/* ADDED: Prevent background transparency issues */
 th.mat-header-cell::after {
   content: '';
   position: absolute;
@@ -43,27 +39,39 @@ td.mat-cell {
   padding: 12px 8px;
   font-size: 13px;
   border-bottom: 1px solid #f3f2f1;
-  background: white; /* ADDED: Ensure cells have solid background */
-}
-
-/* Highlight Case Numbers */
-.bold { 
-  font-weight: 600; 
-  color: #323130; 
-}
-
-/* Set explicit column widths to prevent shifting */
-.mat-column-caseNumber { width: 15%; }
-.mat-column-queueName { width: 20%; }
-.mat-column-enteredAt { width: 22%; }
-.mat-column-exitedAt { width: 22%; }
-.mat-column-owner { width: 21%; }
-
-/* ADDED: Ensure table rows have solid background */
-tr.mat-row {
   background: white;
 }
 
-tr.mat-row:hover {
-  background: #f3f2f1;
-} 
+/* Updated Widths for 7 Columns */
+.mat-column-caseNumber { width: 12%; }
+.mat-column-classification { width: 16%; }
+.mat-column-queueName { width: 14%; }
+.mat-column-owner { width: 14%; }
+.mat-column-enteredAt { width: 16%; }
+.mat-column-exitedAt { width: 14%; }
+.mat-column-status { width: 14%; }
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
+}
+
+.status-at-risk {
+  background-color: #fff4ce;
+  color: #8a662e;
+}
+
+.status-breached {
+  background-color: #fde7e9;
+  color: #a4262c;
+}
+
+.bold { font-weight: 600; color: #323130; }
+
+tr.mat-row:hover { background: #f3f2f1; }

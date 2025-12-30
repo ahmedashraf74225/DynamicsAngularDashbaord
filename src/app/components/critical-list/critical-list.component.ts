@@ -11,7 +11,7 @@ export class CriticalListComponent implements OnChanges, AfterViewInit {
   @Input() cases: any[] = [];
 
   // Defining the properties the HTML is looking for
-  displayedColumns: string[] = ['caseNumber', 'queueName', 'enteredAt', 'exitedAt', 'owner'];
+  displayedColumns: string[] = ['caseNumber', 'queueName', 'enteredAt', 'exitedAt', 'owner','status'];
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -182,7 +182,8 @@ export class DynamicsService {
       enteredAt: item['h.arb_logintime'] ? new Date(item['h.arb_logintime']).toLocaleString() : 'N/A',
       exitedAt: item['h.arb_logouttime'] ? new Date(item['h.arb_logouttime']).toLocaleString() : 'Active',
       owner: item['u.fullname'],
-      status: item.arb_slastatus
+      status: item.arb_slastatus, 
+      statusLabel: (item.arb_slastatus === 3 ? 'Breached' : 'Expires soon')
     }));
   }
 
