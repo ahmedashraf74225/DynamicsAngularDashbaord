@@ -1,61 +1,94 @@
-/* Container must handle Material Elevation and internal layout */
+/* --- Table Container & Base --- */
 .table-container {
-  height: 100%; /* Matches the 400px parent section */
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: white;
-  overflow: auto; /* Required for sticky headers to work */
-  position: relative; /* ADDED: Creates positioning context */
+  overflow: auto;
+  position: relative;
 }
 
-/* Material Table Layout */
 table {
   width: 100%;
   table-layout: fixed;
+  border-collapse: collapse;
 }
 
-/* Header Styling - FIXED for Sticky functionality */
-th.mat-header-cell {
-  position: sticky; /* Keeps the header fixed at the top */
-  top: 0;
-  z-index: 1000; /* CHANGED: Increased from 100 to ensure it stays on top */
-  background: #faf9f8; /* CHANGED: Match the section header background */
-  font-weight: bold;
-  color: #605e5c;
-  white-space: nowrap; 
-  padding: 12px 8px;
-  border-bottom: 2px solid #edebe9;
-  font-size: 13px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* ADDED: Shadow to separate from content */
+/* --- Refactored White Sticky Header --- */
+th.mat-header-cell,
+.mat-mdc-header-cell,
+th.mat-mdc-header-cell {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1100 !important;
+  /* Changed background to white */
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  font-weight: 700 !important;
+  color: #323130 !important; 
+  white-space: nowrap !important;
+  padding: 12px 8px !important;
+  /* Thinner border to match the clean image style */
+  border-bottom: 1px solid #edebe9 !important;
+  font-size: 13px !important;
+  /* Subtle shadow to separate header from data during scroll */
+  box-shadow: 0 2px 2px -1px rgba(0,0,0,0.06) !important;
 }
 
-/* ADDED: Prevent background transparency issues */
-th.mat-header-cell::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: #edebe9;
+/* Background protection for scrolling */
+th.mat-header-cell::before,
+.mat-mdc-header-cell::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -5px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: #ffffff !important;
+  z-index: -1 !important;
 }
 
-/* Cell Styling */
-td.mat-cell {
+/* Ensure the header row itself is white */
+tr.mat-header-row,
+tr.mat-mdc-header-row {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  height: 48px;
+}
+
+/* --- Table Body & Rows --- */
+td.mat-cell,
+td.mat-mdc-cell,
+.mat-mdc-cell {
   padding: 12px 8px;
   font-size: 13px;
   border-bottom: 1px solid #f3f2f1;
   color: #323130;
-  background: white; /* ADDED: Ensure cells have solid background */
+  background: white !important;
+  position: relative;
+  z-index: 1 !important;
 }
 
-/* Progress Bar and Column Widths */
+tr.mat-row,
+tr.mat-mdc-row {
+  background: white !important;
+  background-color: white !important;
+  position: relative;
+  z-index: 1 !important;
+}
+
+tr.mat-row:hover,
+tr.mat-mdc-row:hover {
+  background: #f8f8f8 !important;
+}
+
+/* --- Progress Bar (SLA Compliance) --- */
 .bar-container {
-  background: #f3f2f1;
-  height: 10px;
-  width: 60%;
+  background: #edebe9;
+  height: 8px;
+  width: 65px; /* Fixed width to match image style */
   display: inline-block;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-right: 8px;
   vertical-align: middle;
   overflow: hidden;
@@ -63,7 +96,8 @@ td.mat-cell {
 
 .bar-fill {
   height: 100%;
-  border-radius: 5px;
+  background-color: #71af90; /* Matches the green in your image */
+  border-radius: 10px;
   transition: width 0.4s ease-in-out;
 }
 
@@ -71,24 +105,34 @@ td.mat-cell {
   font-size: 12px;
   font-weight: 700;
   display: inline-block;
-  min-width: 35px;
+  color: #323130;
 }
 
 .bold { 
   font-weight: 600; 
 }
 
-.mat-column-name { width: 28%; }
+/* --- Column Widths --- */
+.mat-column-name { width: 30%; }
 .mat-column-open { width: 10%; }
-.mat-column-avgCaseAge { width: 18%; }
-.mat-column-oldestCaseAge { width: 18%; }
-.mat-column-compliance { width: 26%; }
+.mat-column-avgCaseAge { width: 20%; }
+.mat-column-oldestCaseAge { width: 20%; }
+.mat-column-compliance { width: 20%; }
 
-/* ADDED: Ensure table rows have solid background */
-tr.mat-row {
-  background: white;
+/* --- Scrollbar Styling --- */
+.table-container::-webkit-scrollbar {
+  width: 8px;
 }
 
-tr.mat-row:hover {
+.table-container::-webkit-scrollbar-track {
   background: #f3f2f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #c8c6c4;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #a19f9d;
 }

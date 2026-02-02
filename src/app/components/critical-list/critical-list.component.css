@@ -1,3 +1,4 @@
+/* --- Table Container & Base --- */
 .table-container {
   height: 100%;
   display: flex;
@@ -9,48 +10,98 @@
 
 table {
   width: 100%;
-  table-layout: fixed; 
+  table-layout: fixed;
+  border-collapse: collapse; /* Ensures clean, single lines between cells */
 }
 
-th.mat-header-cell {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #faf9f8;
-  white-space: nowrap; 
-  padding: 12px 8px;
-  font-weight: 700;
-  color: #605e5c;
-  border-bottom: 2px solid #edebe9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+/* --- Refactored White Sticky Header --- */
+th.mat-header-cell,
+.mat-mdc-header-cell,
+th.mat-mdc-header-cell {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1100 !important;
+  /* Changed background from #faf9f8 to white */
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  white-space: nowrap !important;
+  padding: 12px 8px !important;
+  font-weight: 700 !important;
+  color: #323130 !important; /* Darker text for white background */
+  /* Thinner border to match the clean image style */
+  border-bottom: 1px solid #edebe9 !important;
+  /* Subtle shadow for a clean look during scroll */
+  box-shadow: 0 2px 2px -1px rgba(0,0,0,0.06) !important;
 }
 
-th.mat-header-cell::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: #edebe9;
+/* Background protection for scrolling layering */
+th.mat-header-cell::before,
+.mat-mdc-header-cell::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -5px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: #ffffff !important;
+  z-index: -1 !important;
 }
 
-td.mat-cell {
+/* Ensuring the pseudo-border matches the new clean look */
+th.mat-header-cell::after,
+.mat-mdc-header-cell::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 1px !important;
+  background: #edebe9 !important;
+  z-index: 2 !important;
+}
+
+/* Ensure the header row itself is white */
+tr.mat-header-row,
+tr.mat-mdc-header-row {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* --- Table Body & Cells --- */
+td.mat-cell,
+td.mat-mdc-cell,
+.mat-mdc-cell {
   padding: 12px 8px;
   font-size: 13px;
   border-bottom: 1px solid #f3f2f1;
-  background: white;
+  background: white !important;
+  background-color: white !important;
+  position: relative;
+  z-index: 1 !important;
 }
 
-/* Updated Widths for 7 Columns */
-.mat-column-caseNumber { width: 12%; }
-.mat-column-classification { width: 16%; }
-.mat-column-queueName { width: 14%; }
-.mat-column-owner { width: 14%; }
-.mat-column-enteredAt { width: 16%; }
-.mat-column-exitedAt { width: 14%; }
-.mat-column-status { width: 14%; }
+tr.mat-row,
+tr.mat-mdc-row {
+  background: white !important;
+  background-color: white !important;
+  position: relative;
+  z-index: 1 !important;
+}
 
+tr.mat-row:hover,
+tr.mat-mdc-row:hover { 
+  background: #f8f8f8 !important; /* Slightly softer hover */
+}
+
+/* --- Column Widths --- */
+.mat-column-caseNumber { width: 12%; }
+.mat-column-queueName { width: 18%; }
+.mat-column-enteredAt { width: 20%; }
+.mat-column-exitedAt { width: 20%; }
+.mat-column-owner { width: 18%; }
+.mat-column-status { width: 12%; }
+
+/* --- Status Badge Styles --- */
 .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -72,6 +123,25 @@ td.mat-cell {
   color: #a4262c;
 }
 
-.bold { font-weight: 600; color: #323130; }
+.bold { 
+  font-weight: 600; 
+  color: #323130; 
+}
 
-tr.mat-row:hover { background: #f3f2f1; }
+/* --- Custom Scrollbar --- */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f3f2f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #c8c6c4;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #a19f9d;
+}

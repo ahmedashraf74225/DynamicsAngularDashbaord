@@ -32,19 +32,7 @@
     </div>
 
     <main class="grid-container">
-      <section class="table-section">
-        <h3 class="section-header">Queue-level Monitoring</h3>
-        <app-queue-table [data]="dashboardData"></app-queue-table>
-      </section>
-
-      <section class="sidebar-section">
-        <h3 class="section-header">Critical Cases Monitoring</h3>
-        <app-critical-list [cases]="criticalCases"></app-critical-list>
-      </section>
-    </main>
-
-    <div class="bottom-row">
-      <section class="alerts-section">
+       <section class="alerts-section">
         <h3 class="section-header">Alerts</h3>
         <app-alerts [alerts]="alertData"></app-alerts>
       </section>
@@ -53,6 +41,20 @@
         <h3 class="section-header">Overall SLA Compliance</h3>
         <app-sla-gauge [percent]="overallCompliance"></app-sla-gauge>
       </section>
+    </main>
+
+    <div class="bottom-row">
+        <section class="table-section">
+        <h3 class="section-header">Queue-level Monitoring</h3>
+        <app-queue-table [data]="dashboardData"></app-queue-table>
+      </section>
+
+      <section class="sidebar-section">
+        <h3 class="section-header">Critical Cases Monitoring</h3>
+        <app-critical-list [cases]="criticalCases"></app-critical-list>
+      </section>
     </div>
   </div>
 </div>
+
+ 

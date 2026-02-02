@@ -187,12 +187,4 @@ export class DynamicsService {
     }));
   }
 
-  private calculateSlaCountdown(targetDate: string): string {
-    if (!targetDate) return "0:00";
-    const diff = new Date(targetDate).getTime() - new Date().getTime();
-    const absMins = Math.abs(Math.floor(diff / 60000));
-    const hours = Math.floor(absMins / 60);
-    const mins = absMins % 60;
-    return `${diff < 0 ? '-' : ''}${hours}:${mins < 10 ? '0' : ''}${mins}`;
-  }
 }
