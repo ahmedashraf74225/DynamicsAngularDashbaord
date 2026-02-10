@@ -24,9 +24,9 @@
     <ng-container matColumnDef="compliance">
       <th mat-header-cell *matHeaderCellDef> SLA Compliance </th>
       <td mat-cell *matCellDef="let q">
-        <div class="bar-container">
+        <div class="bar-container" [class.breached-zero]="q.compliance === 0">
           <div class="bar-fill" 
-               [style.width.%]="q.compliance" 
+               [style.width.%]="q.compliance === 0 ? 100 : q.compliance" 
                [style.background-color]="getBarColor(q.compliance)">
           </div>
         </div>

@@ -136,3 +136,10 @@ tr.mat-mdc-row:hover {
 .table-container::-webkit-scrollbar-thumb:hover {
   background: #a19f9d;
 }
+
+
+/* queue-table.component.css */
+.bar-container.breached-zero {
+  background: #fde7e9; /* Light red background */
+  border: 1px solid #d32f2f; /* Red border */
+}

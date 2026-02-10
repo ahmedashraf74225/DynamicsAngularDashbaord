@@ -7,21 +7,23 @@
 }
 
 .gauge-number {
-  font-size: 56px; /* Large focus on the number */
+  font-size: 56px;
   font-weight: 700;
   margin-bottom: 20px;
+  transition: color 0.3s ease;
 }
 
 .bar-container-large {
   width: 100%;
   max-width: 300px;
   background: #f3f2f1;
-  height: 20px; /* Thicker bar for the main section */
+  height: 20px;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 16px;
 }
 
 .bar-fill-large {
   height: 100%;
-  transition: width 0.8s ease-in-out;
+  transition: width 0.8s ease-in-out, background-color 0.3s ease;
 }

@@ -9,20 +9,17 @@
     </div>
   </div>
 
-  <!-- NEW: Loading Overlay -->
   <div class="loading-overlay" *ngIf="isLoading">
     <div class="spinner"></div>
     <p>Loading dashboard data...</p>
   </div>
 
-  <!-- NEW: Error Banner -->
   <div class="error-banner" *ngIf="hasError && !isLoading">
     <span class="error-icon">⚠️</span>
     <span class="error-text">{{ errorMessage }}</span>
     <button class="retry-btn" (click)="refreshData()">Retry</button>
   </div>
 
-  <!-- Dashboard Content -->
   <div class="dashboard-content" [class.loading]="isLoading">
     <div class="kpi-row">
       <app-kpi-card label="Total Open Cases" [value]="kpis.total"></app-kpi-card>

@@ -1,23 +1,126 @@
-.alerts-card {
-  background: white;
-  padding: 20px;
-  border: 1px solid #edebe9;
-  border-radius: 4px;
+.alerts-container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.alert-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 16px;
+  min-height: 0; /* Important for flex scrolling */
 }
 
 .alert-item {
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
   border-radius: 4px;
   display: flex;
   align-items: center;
   font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: slideIn 0.3s ease-out;
 }
 
-.alert-icon { margin-right: 10px; }
+.alert-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-/* Alert Types */
-.warning { background: #fff4ce; color: #323130; border-left: 4px solid #ffb900; }
-.danger { background: #fde7e9; color: #323130; border-left: 4px solid #d13438; }
-.no-alerts { color: #605e5c; font-style: italic; }
+.alert-item:last-child {
+  margin-bottom: 0;
+}
+
+.alert-icon {
+  margin-right: 12px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.alert-message {
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+/* Alert Types with NEW color thresholds */
+.warning {
+  background: #fff4ce;
+  color: #323130;
+  border-left: 4px solid #ffb900;
+}
+
+.danger {
+  background: #fde7e9;
+  color: #323130;
+  border-left: 4px solid #d13438;
+}
+
+.info {
+  background: #e7f3ff;
+  color: #323130;
+  border-left: 4px solid #0078d4;
+}
+
+.success {
+  background: #dff6dd;
+  color: #323130;
+  border-left: 4px solid #107c10;
+}
+
+/* No Alerts State */
+.no-alerts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #605e5c;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+}
+
+.no-alerts-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Paginator styling */
+mat-paginator {
+  flex-shrink: 0;
+  border-top: 1px solid #edebe9;
+  background: #faf9f8;
+}
+
+/* Scrollbar styling */
+.alert-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alert-list::-webkit-scrollbar-track {
+  background: #f3f2f1;
+  border-radius: 3px;
+}
+
+.alert-list::-webkit-scrollbar-thumb {
+  background: #c8c6c4;
+  border-radius: 3px;
+}
+
+.alert-list::-webkit-scrollbar-thumb:hover {
+  background: #a19f9d;
+}

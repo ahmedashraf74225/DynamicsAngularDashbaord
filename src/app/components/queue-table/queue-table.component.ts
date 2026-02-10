@@ -13,7 +13,6 @@ export class QueueTableComponent implements OnChanges, AfterViewInit {
   displayedColumns: string[] = ['name', 'open', 'avgCaseAge', 'oldestCaseAge', 'compliance'];
   dataSource = new MatTableDataSource<any>([]);
 
-  // Using a setter ensures the paginator is linked the moment it renders
   @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
     if (value) {
       this.dataSource.paginator = value;
@@ -33,10 +32,15 @@ export class QueueTableComponent implements OnChanges, AfterViewInit {
     }
   }
 
-  getBarColor(compliance: number): string {
-    // Green (80%+), Orange (50%-79%), Red (<50%)
-    if (compliance >= 80) return '#6bb68c'; 
-    if (compliance >= 50) return '#f1d37e'; 
+   getBarColor(compliance: number): string {
+    // Green: 95% or above (Within SLA)
+    if (compliance >= 95) return '#6bb68c'; 
+    
+    // Yellow: 90-94% (Expires Soon)
+    if (compliance >= 90) return '#f1d37e'; 
+    
+    // Red: 89% and below (Breached)
     return '#d32f2f';
   }
+
 }

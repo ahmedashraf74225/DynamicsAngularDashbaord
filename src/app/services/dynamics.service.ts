@@ -42,7 +42,6 @@ export class DynamicsService {
   const queueMap = new Map(); 
   const now = new Date();
 
-  // PASS 1: Identify absolute start/end per unique assignment
   rows.forEach(item => {
     const ahtId = item.arb_queueahtid;
     const queueName = item['q.name'] || 'Unknown';
@@ -64,7 +63,6 @@ export class DynamicsService {
     }
   });
 
-  // PASS 2: Aggregate results by Queue Name
   ahtMap.forEach((aht) => {
     if (!queueMap.has(aht.queueName)) {
       queueMap.set(aht.queueName, { 
@@ -72,7 +70,7 @@ export class DynamicsService {
         open: 0, 
         withinSLA: 0, 
         slaRelevantTotal: 0, 
-        agesInDays: [] // FIX: Ensure this array is initialized here
+        agesInDays: [] 
       });
     }
 
@@ -90,7 +88,7 @@ export class DynamicsService {
     // Calculate span and push to array
     if (aht.minLogin) {
       const spanInDays = (aht.maxLogout.getTime() - aht.minLogin.getTime()) / (1000 * 3600 * 24);
-      entry.agesInDays.push(spanInDays); // Now 'push' will work correctly
+      entry.agesInDays.push(spanInDays); 
     }
   });
 

@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class AlertsComponent {
   @Input() alerts: any[] = [];
+  
+  // Logic for datasource and paginator removed for simplicity
 }
